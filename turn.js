@@ -1,6 +1,4 @@
 
-// Something?!
-
 /* Need a standard interface for declcam to run these operations.
  * Each operation is defined in a configuration node with the same name
  * as the op itself, i.e. this is the 'turn' operation, and is defined
@@ -39,13 +37,30 @@ var example_op = {
         "rotate": {"x":0, "y":0, "z":0},
         "translate": {"x":0, "y":0, "z":0},
     },
-    "tool": 1,
     "operation": "turn",
     "turn": {
+        "tool": 1,
         // ???
     }
 }
 
 function turn(part, operation) {
+    var m = operation.make_machine();
+    
+    // TODO lathe operation details.
+    /* SVG path operations (already implemented parser in 
+     * svg_playground/src/types/parsers/path.h)
+     * "profile": "M 100 100 L 200 200"
+     * How to create a gcode machining path from that?
+     * Want something higher level than a path to gcode path
+     * e.g like http://www.cnccookbook.com/CCCNCGCodeG71RoughTurning.htm
+     * i.e. G71 Rough turning cycle.
+     * Take the path, interpret it as a profile and generate gcode to remove
+     * that material from the stock object.
+     *
+     * NOTE: lathe operations are unimplemented in cxxcam! probably better to 
+     * experiment with some part operation that is already implemented.
+     */
 
+    print(JSON.stringify(m.generate()));
 }
