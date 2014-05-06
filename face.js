@@ -1,6 +1,5 @@
-
-function face(part, operation) {
-    var m = operation.make_machine();
+var OP = (function (op) {
+    op.face = function (part, operation, m) {
 
     /* Face operation
      * take depth amount off the top of the stock.
@@ -47,5 +46,8 @@ function face(part, operation) {
          * can be specified manually by user. */
         spindle_speed: 0
     };
-    print(JSON.stringify(m.generate()));
+    print("FACE_OP " + JSON.stringify(m.generate()));
 }
+
+    return op;
+}(OP || {}));
