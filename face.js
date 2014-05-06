@@ -46,7 +46,6 @@ var OP = (function (op) {
          * can be specified manually by user. */
         spindle_speed: 0
     };
-    print("FACE_OP " + JSON.stringify(m.generate()));
 }
 
     return op;
