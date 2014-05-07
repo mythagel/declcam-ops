@@ -1,5 +1,15 @@
 var OP = (function (op) {
-    op.face = function (part, operation, m) {
+    op.face = function (part, op, machine) {
+        var stock = machine.stock;
+        var bbox = bounding_box(stock);
+
+        machine.feed_rate = 100;
+        machine.tool_change(op.face.tool);
+        machine.spindle_on(300);
+
+        machine.rapid({x: bbox.min.x, y: bbox.min.y, z: bbox.max.z});
+        machine.motion = "incremental";
+        machine.linear({z: -op.face.depth});
 
     /* Face operation
      * take depth amount off the top of the stock.
